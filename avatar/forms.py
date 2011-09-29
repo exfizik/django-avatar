@@ -14,7 +14,7 @@ from avatar.settings import (AVATAR_MAX_AVATARS_PER_USER, AVATAR_MAX_SIZE,
 def avatar_img(avatar, size):
     if not avatar.thumbnail_exists(size):
         avatar.create_thumbnail(size)
-    return mark_safe("""<img src="%s" alt="%s" width="%s" height="%s" />""" % 
+    return mark_safe("""<img src="%s" alt="%s" width="%s" height="%s" class="avatar"/>""" % 
         (avatar.avatar_url(size), unicode(avatar), size, size))
 
 class UploadAvatarForm(forms.Form):
