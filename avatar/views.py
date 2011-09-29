@@ -87,6 +87,7 @@ def add(request, extra_context=None, next_override=None,
 @login_required
 def change(request, extra_context=None, next_override=None,
         upload_form=UploadAvatarForm, primary_form=PrimaryAvatarForm,
+        template_name='avatar/change.html',
         *args, **kwargs):
     if extra_context is None:
         extra_context = {}
@@ -112,7 +113,7 @@ def change(request, extra_context=None, next_override=None,
             avatar_updated.send(sender=Avatar, user=request.user, avatar=avatar)
         return HttpResponseRedirect(next_override or _get_next(request))
     return render_to_response(
-        'avatar/change.html',
+        template_name,
         extra_context,
         context_instance = RequestContext(
             request,
